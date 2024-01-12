@@ -2,7 +2,7 @@
 function moduleProject2() {
   // 👇 WORK WORK BELOW THIS LINE 👇
   let startTime = new Date().getTime() // Record start time
-  
+
 
   function getTimeElapsed() { // To be used at end of game to get elapsed time
     let currentTime = new Date().getTime()
@@ -80,27 +80,39 @@ function moduleProject2() {
     let targeted = document.querySelector('.targeted')
 
     if (isUp){
-      console.log('you clicked Up')
-    }else if (isDown){
-      console.log('you clicked Down')
-    }else if(isLeft){
-      console.log('you clicked Left')
+      if(targeted.parentElement.previousElementSibling){
+        let idx = Array.from(targeted.parentElement.children).indexOf(targeted)
+        targeted.classList.remove('targeted')
+        targeted.parentElement.previousElementSibling.children[idx].classList.add('targeted')
+      }
+    }
+    
+    else if (isDown){
+      if(targeted.parentElement.nextElementSibling){
+        let idx = Array.from(targeted.parentElement.children).indexOf(targeted)
+        targeted.classList.remove('targeted')
+        targeted.parentElement.nextElementSibling.children[idx].classList.add('targeted')
+      }
+    }
+    
+    else if(isLeft){
       if(targeted.previousElementSibling){
-       targeted.classList.remove('targeted')
-       targeted.previousElementSibling.classList.add('targeted')
+        targeted.classList.remove('targeted')
+        targeted.previousElementSibling.classList.add('targeted')
+      }
     }
-  }
-    else if (isRight){
+    else if(isRight){
       if(targeted.nextElementSibling){
-       targeted.classList.remove('targeted')
-       targeted.nextElementSibling.classList.add('targeted')
+        targeted.classList.remove('targeted')
+        targeted.nextElementSibling.classList.add('targeted')
+      }
     }
-  }
     // 👉 TASK 4 - Use the space bar to exterminate a mosquito 👈
 
     // 👉 TASK 5 - End the game 👈
     
   })
+}
   // 👆 WORK WORK ABOVE THIS LINE 👆
 
 // ❗ DO NOT MODIFY THE CODE BELOW
